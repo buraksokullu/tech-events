@@ -1,0 +1,10 @@
+@mixin hb-icon($filename, $bg-size: contain, $stroke-color: none, $fill-color: none) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $bg-size;
+  background-image: svg-load('icons/#{$filename}.svg', stroke=$stroke-color, fill=$fill-color);
+}
+
+@mixin hb-icon-balloon {
+  @include hb-icon(balloon);
+}

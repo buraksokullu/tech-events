@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tech-event-app
+  namespace: myaccount
+spec:
+  replicas: ${PODS}
+  template:
+    metadata:
+      labels:
+        app: tech-event
+        ENV: ${ENV}
+    spec:
+      containers:
+      - name: tech-event
+        image: tech-event:${docker_tag}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: ${NODE_ENV}
+      imagePullSecrets:
+      - name: regcred

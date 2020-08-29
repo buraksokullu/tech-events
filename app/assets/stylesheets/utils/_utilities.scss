@@ -1,0 +1,194 @@
+@import 'Assets/stylesheets/mixins/_media.scss';
+@import 'Assets/stylesheets/_variables.scss';
+
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+$sides: (top, bottom, left, right);
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+/** Font Size */
+.f-s-text {
+  font-size: 13px;
+}
+
+.f-s-big-text {
+  font-size: 15px;
+}
+
+/** Text Styles */
+.t-bold {
+  font-weight: 600;
+}
+
+.t-normal {
+  font-style: normal;
+}
+
+.t-italic {
+  font-style: italic;
+}
+
+/** Font Align */
+$fontAlign: ('center', 'left', 'right');
+
+@each $align in $fontAlign {
+  .t-#{$align} {
+    text-align: $align;
+  }
+}
+
+/** Margin & Padding Style */
+.p-none {
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+}
+
+.p-t-none {
+  padding-top: 0 !important;
+}
+
+.p-l-none {
+  padding-left: 0 !important;
+}
+
+.p-b-none {
+  padding-bottom: 0 !important;
+}
+
+.p-r-none {
+  padding-right: 0 !important;
+}
+
+.m-none {
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+}
+
+.m-t-none {
+  margin-top: 0 !important;
+}
+
+.m-l-none {
+  margin-left: 0 !important;
+}
+
+.m-b-none {
+  margin-bottom: 0 !important;
+}
+
+.m-r-none {
+  margin-right: 0 !important;
+}
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+/** Display Style */
+.d-none {
+  display: none !important;
+}
+
+.d-inherit {
+  display: inherit;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-table {
+  display: table;
+}
+
+/** Flex */
+$flexVerticalAligns: (stretch, center, flex-start, flex-end, baseline, initial, inherit);
+
+@each $align in $flexVerticalAligns {
+  .a-i-#{$align} {
+    align-items: $align !important;
+  }
+
+  .a-c-#{$align} {
+    align-content: $align !important;
+  }
+
+  .a-s-#{$align} {
+    align-self: $align !important;
+  }
+}
+
+$flexHorizontalAligns: (
+  flex-start,
+  flex-end,
+  center,
+  space-between,
+  space-around,
+  initial,
+  inherit
+);
+
+@each $align in $flexHorizontalAligns {
+  .j-c-#{$align} {
+    justify-content: $align !important;
+  }
+
+  .j-i-#{$align} {
+    justify-items: $align !important;
+  }
+
+  .j-s-#{$align} {
+    justify-self: $align !important;
+  }
+}
+
+/** Typograpyh */
+
+/** Font Colors */
+
+.t-error {
+  color: #ba0000;
+}
+
+.t-green {
+  color: green;
+}
+
+.t-blue {
+  color: blue;
+}
+
+/** Functional Style */
+.u-s-none {
+  user-select: none;
+}
+
+.p-e-none {
+  pointer-events: none;
+}
+
+.width-full {
+  width: 100%;
+}

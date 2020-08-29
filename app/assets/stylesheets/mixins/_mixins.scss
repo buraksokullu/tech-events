@@ -1,0 +1,41 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@keyframes FadeAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 600px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-landscape {
+    @media only screen and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-portrait {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == small-desktop {
+    @media only screen and (max-width: 1205px) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}

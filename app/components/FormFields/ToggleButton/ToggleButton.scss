@@ -1,0 +1,74 @@
+.toggleButtonHolder {
+  display: flex;
+  margin-left: 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 10px 20px 10px;
+
+  &.disabled {
+    cursor: not-allowed;
+
+    * {
+      cursor: not-allowed;
+    }
+  }
+  .checkboxLabel {
+    margin-right: 10px;
+  }
+
+  input[type='checkbox'] {
+    appearance: none;
+    background-color: #000;
+    border: 2px solid #000;
+    border-radius: 6.7px;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    outline: none;
+    position: relative;
+    width: 20px;
+    border-radius: 8px;
+    height: 32px;
+    width: 80px;
+    border-radius: 50px;
+    transition: all 250ms;
+
+    &:before {
+      content: 'Kapalı';
+      color: $white;
+      position: absolute;
+      top: 6px;
+      left: 8px;
+    }
+
+    &:after {
+      background: white;
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      top: 6px;
+      right: 3px;
+    }
+
+    &:checked:after {
+      left: 3px;
+      right: initial;
+    }
+
+    &:checked:before {
+      content: 'Açık';
+      right: 3px;
+      left: initial;
+      color: $white;
+    }
+
+    &:checked {
+      background: $orange;
+      border: 2px solid $orange;
+    }
+  }
+}

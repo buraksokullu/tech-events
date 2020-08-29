@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  mylist-ui:
+    container_name: mylist-ui
+    build:
+      context: .
+      dockerfile: Dockerfile.Development
+    ports:
+      - '8080:80'
+    environment:    
+      NODE_ENV: 'Development'

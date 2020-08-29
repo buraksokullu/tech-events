@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'SFProDisplay';
+  src: url('~Assets/fonts/SF-Pro/SFProDisplay-Regular.woff') format('woff');
+  src: url('~Assets/fonts/SF-Pro/SFProDisplay-Regular.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SFProDisplay-Regular.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SFProDisplay-Regular.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'SFProDisplay';
+  src: url('~Assets/fonts/SF-Pro/SFProDisplay-SemiBold.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SFProDisplay-SemiBold.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SFProDisplay-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'SFProDisplay';
+  src: url('~Assets/fonts/SF-Pro/SF-Pro-Display-Bold.woff') format('woff');
+  src: url('~Assets/fonts/SF-Pro/SF-Pro-Display-Bold.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SF-Pro-Display-Bold.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SF-Pro-Display-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'SFProText';
+  src: url('~Assets/fonts/SF-Pro/SFProText-Regular.woff') format('woff');
+  src: url('~Assets/fonts/SF-Pro/SFProText-Regular.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SFProText-Regular.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SFProText-Regular.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'SFProText';
+  src: url('~Assets/fonts/SF-Pro/SFProText-SemiBold.woff') format('woff');
+  src: url('~Assets/fonts/SF-Pro/SFProText-SemiBold.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SFProText-SemiBold.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SFProText-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'SFProText';
+  src: url('~Assets/fonts/SF-Pro/SFProText-Bold.woff') format('woff');
+  src: url('~Assets/fonts/SF-Pro/SFProText-Bold.woff2') format('woff2'),
+    url('~Assets/fonts/SF-Pro/SFProText-Bold.woff') format('woff'),
+    url('~Assets/fonts/SF-Pro/SFProText-Bold.ttf') format('truetype');
+  font-weight: 700;
+}

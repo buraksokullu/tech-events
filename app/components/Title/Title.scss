@@ -1,0 +1,11 @@
+.titleHolder {
+  font-family: $font-family-secondary;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.33px;
+  margin: 0;
+  &.marginTop24 {
+    margin-top: 24px;
+  }
+}

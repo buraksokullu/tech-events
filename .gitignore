@@ -1,0 +1,15 @@
+.idea
+.vscode
+.history
+.DS_Store
+
+.tmp
+.sass-cache
+.publish
+coverage/
+test/coverage
+dist/
+node_modules/
+reports/
+webpack.stats.json
+package-lock.json

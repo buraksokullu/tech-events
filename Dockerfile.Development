@@ -1,0 +1,24 @@
+# build environment
+FROM node:10.16.0-alpine as builder
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ENV PORT 80
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package.json /usr/src/app/package.json
+RUN yarn install
+COPY . /usr/src/app
+RUN yarn install
+RUN yarn run build
+
+# production environment
+FROM nginx:1.14
+RUN rm -rf /etc/nginx/conf.d
+COPY utils/docker/nginx /etc/nginx
+COPY configs/ /usr/share/nginx/configs
+COPY utils/docker/docker-entrypoint.sh /usr/share/nginx
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+WORKDIR /usr/share/nginx
+RUN chmod +x docker-entrypoint.sh
+EXPOSE 80
+CMD ["./docker-entrypoint.sh"]

@@ -1,0 +1,26 @@
+.notification {
+  position: absolute;
+  min-width: 200px;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 16px;
+  background: $corn-flower;
+  border: 1px solid #6276cf;
+  .text {
+    font-size: 14px;
+    font-weight: bold;
+    color: $white;
+    letter-spacing: -0.15px;
+    line-height: 1.43;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      border-width: 12px;
+      margin-top: -14px;
+      border-style: solid;
+      border-color: transparent #6c84fa transparent transparent;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: campaign-backoffice-ui-svc
+  namespace: backoffice
+spec:
+  selector:
+    app: campaign-backoffice-ui
+    ENV: ${ENV}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: ${NODE_PORT}
+  type: NodePort
