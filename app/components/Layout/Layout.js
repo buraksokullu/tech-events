@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header/Header';
-import Aside from './Aside/Aside';
 import s from './Layout.scss';
 
-const Layout = ({ children }) => (
-  <div>
-    <Header />
-    <div className={s.bodyHolder}>
-      <Aside />
-      <div className={s.childrenHolder}>{children}</div>
-    </div>
-  </div>
-);
+export class Layout extends Component {
+  render() {
+    const { children } = this.props;
+    return (
+      <div>
+        <Header />
+        <div className={s.bodyHolder}>{children}</div>
+      </div>
+    );
+  }
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired

@@ -3,15 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0px 10px 20px 10px;
 
-  &.disabled {
-    cursor: not-allowed;
-
-    * {
-      cursor: not-allowed;
-    }
-  }
   .checkboxLabel {
     margin-left: 10px;
   }
@@ -50,18 +42,6 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='12' viewBox='0 0 15 12'%3E%3Cpath fill='%23FFF' fill-rule='nonzero' d='M13.927 2.2l-6.845 9.289a1.011 1.011 0 0 1-1.43.188L.764 7.769a1 1 0 0 1 1.25-1.562L6.09 9.468l6.227-8.451a1 1 0 1 1 1.61 1.183z'/%3E%3C/svg%3E%0A");
         background-repeat: no-repeat;
       }
-    }
-
-    &:disabled {
-      background: $grey20;
-      border: 2px solid $grey20;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    &.error {
-      background-color: $fireRed5;
-      border: 2px solid $fireRed40;
     }
   }
 }

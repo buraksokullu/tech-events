@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
 
-import { getEvents, getCities } from 'Store/api/TrivagoApi';
-import Layout from 'Components/Layout/Layout';
-import { eventsSelector, citiesSelector } from 'App/store/selectors/index';
+import { formatDate, getTime, getTimeDifference } from 'Utils/helper';
+
+import s from './Dashboard.scss';
 
 export class Dashboard extends Component {
-  componentDidMount() {
-    const { getEvents, getCities } = this.props;
-    getEvents();
-    getCities();
-  }
-
   getCityName = id => {
     const { cities } = this.props;
 
@@ -27,18 +19,31 @@ export class Dashboard extends Component {
     const { events } = this.props;
     return (
       <div>
-        <Layout>
-          <div>
-            {events &&
-              events.length > 0 &&
-              events.map(item => (
-                <div className={''} key={item.id}>
-                  {item.name}
-                  {this.getCityName(item.city)}
+        <div className={s.dashboard}>
+          {events &&
+            events.length > 0 &&
+            events.map(item => (
+              <div className={s.event} key={item.id}>
+                <div className={s.date}>{formatDate(item.startDate)}</div>
+                <div className={s.item}>
+                  <div className={s.firstRow}>
+                    <div className={s.eventName}>
+                      {item.isFree && <span className={s.isFree}> FREE </span>}
+                      <strong className={s.name}>{item.name}</strong>
+                    </div>
+                    <div> Sign Up </div>
+                  </div>
+                  <div className={s.secondRow}>
+                    <span className={s.cityName}>{this.getCityName(item.city)}</span>
+                    <span className={s.timeDifferences}>
+                      {getTimeDifference(item.startDate, item.endDate)}
+                    </span>
+                    <span className={s.time}>{getTime(item.startDate, item.endDate)}</span>
+                  </div>
                 </div>
-              ))}
-          </div>
-        </Layout>
+              </div>
+            ))}
+        </div>
       </div>
     );
   }
@@ -54,17 +59,4 @@ Dashboard.defaultProps = {
   cities: []
 };
 
-const mapStateToProps = createStructuredSelector({
-  events: eventsSelector,
-  cities: citiesSelector
-});
-
-export const mapDispatchToProps = dispatch => ({
-  getEvents: () => dispatch(getEvents()),
-  getCities: () => dispatch(getCities())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default Dashboard;

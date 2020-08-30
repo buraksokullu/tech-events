@@ -1,36 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { matchUrlRegex } from 'Utils/helper';
+import React, { Component } from 'react';
+
+import Input from 'Components/FormFields/Input/Input';
+import Checkbox from 'Components/FormFields/Checkbox/Checkbox';
+
 import s from './Aside.scss';
 
-const routes = [
-  {
-    id: 'dashboard',
-    url: '/',
-    text: 'Dashboard'
-  },
-  {
-    id: 'contents',
-    url: '/campaign-contents',
-    text: 'İçerikler'
+export class Aside extends Component {
+  changeName = event => {
+    const { filterByName } = this.props;
+
+    filterByName(event.target.value);
+  };
+
+  filterFreeEvents = event => {
+    const { filterFreeEvents } = this.props;
+
+    filterFreeEvents(event.target.checked);
+  };
+
+  render() {
+    return (
+      <div className={s.sidebarHolder}>
+        <div className={s.searchInput}>
+          <Input
+            id="eventName"
+            name="eventName"
+            placeholder="Name"
+            maxLength="50"
+            onChange={this.changeName}
+          />
+        </div>
+
+        <div className={s.chckFilter}>
+          <Checkbox
+            id="chckOnlyFree"
+            name="chckOnlyFree"
+            checked={false}
+            onChange={this.filterFreeEvents}
+            label={(
+              <div>
+                Only
+                <span className={s.isFree}>Free</span>
+              </div>
+            )}
+          />
+        </div>
+      </div>
+    );
   }
-];
+}
 
-const Aside = () => (
-  <div className={s.sidebarHolder}>
-    {routes.map(item => (
-      <Link
-        to={item.url}
-        id={item.id}
-        className={`${matchUrlRegex(item.url) ? s.active : ''} ${s.sidebarElement}`}
-        key={item.id}
-      >
-        {item.text}
-      </Link>
-    ))}
-  </div>
-);
-
-Aside.propTypes = {};
 export default Aside;

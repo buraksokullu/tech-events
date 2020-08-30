@@ -1,14 +1,14 @@
 /** Dependencies */
 import React, { Suspense, Component } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import Dashboard from 'App/views/Dashboard/Dashboard';
+import Home from 'App/views/Home/Home';
 
 class RootRouter extends Component {
-  renderDashboardComponent = props => {
-    return <Dashboard {...props} />;
+  renderHomeComponent = props => {
+    return <Home {...props} />;
   };
 
-  redirectDashboardComponent = () => {
+  redirectHomeComponent = () => {
     return <Redirect to="/" />;
   };
 
@@ -17,8 +17,8 @@ class RootRouter extends Component {
       <Suspense fallback={<div />}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={this.renderDashboardComponent} />
-            <Route render={this.redirectDashboardComponent} />
+            <Route exact path="/" render={this.renderHomeComponent} />
+            <Route render={this.redirectHomeComponent} />
           </Switch>
         </BrowserRouter>
       </Suspense>
