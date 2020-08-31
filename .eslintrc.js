@@ -6,10 +6,8 @@ module.exports = {
   },
   extends: ['airbnb', 'prettier'],
   globals: {
-    hwindow: true,
     document: true,
     window: true,
-    hepsiBus: true,
     global: true
   },
   parserOptions: {

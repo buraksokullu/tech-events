@@ -37,18 +37,3 @@ export const getCities = () => async dispatch => {
       });
   });
 };
-
-// export const saveCampaignContent = params => async dispatch => {
-//   await new Promise((resolve, reject) => {
-//     dispatch(saveCampaignContentLoading(true));
-//     CampaignService.saveCampaignContent(params)
-//       .then(response => {
-//         dispatch(saveCampaignContentSuccess(response.data));
-//         resolve();
-//       })
-//       .catch(error => {
-//         dispatch(saveCampaignContentFailure(error));
-//         reject();
-//       });
-//   });
-// };

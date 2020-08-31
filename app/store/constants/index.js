@@ -1,12 +1,8 @@
-import { SHOW_MODAL, HIDE_MODAL } from './common/customModalConstants';
-
 import { GET_EVENTS_LOADING, GET_EVENTS_SUCCESS, GET_EVENTS_FAILURE } from './eventsConstants';
 
 import { GET_CITIES_LOADING, GET_CITIES_SUCCESS, GET_CITIES_FAILURE } from './citiesConstants';
 
 export {
-  SHOW_MODAL,
-  HIDE_MODAL,
   GET_EVENTS_LOADING,
   GET_EVENTS_SUCCESS,
   GET_EVENTS_FAILURE,
