@@ -8,6 +8,7 @@ import { getEvents, getCities } from 'Store/api/TrivagoApi';
 import Layout from 'Components/Layout/Layout';
 import { eventsSelector, citiesSelector } from 'App/store/selectors/index';
 
+import Modal from 'Components/Modal/Modal';
 import Dashboard from '../Dashboard/Dashboard';
 import Aside from '../../components/Layout/Aside/Aside';
 
@@ -18,6 +19,9 @@ export class Home extends Component {
     super(props);
 
     this.state = {
+      showModal: false,
+      eventName: '',
+      selectedIds: [],
       cities: [],
       events: []
     };
@@ -38,9 +42,17 @@ export class Home extends Component {
 
   setData = events => {
     const { cities } = this.props;
+    const selectedEventIdsStore = JSON.parse(localStorage.getItem('selectedEvents'));
+
+    const newArr = events.map(v => ({
+      ...v,
+      isSelected: selectedEventIdsStore ? !!selectedEventIdsStore.includes(v.id) : false
+    }));
+
     this.setState({
-      events,
-      cities
+      events: newArr,
+      cities,
+      selectedIds: selectedEventIdsStore || []
     });
   };
 
@@ -63,8 +75,47 @@ export class Home extends Component {
     });
   };
 
+  toggleModal = (id, eventName) => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+      eventName,
+      selectedId: id
+    }));
+  };
+
+  updateEventStatus = selectedIds => {
+    const { events } = this.state;
+    const newArr = events.map(v => ({
+      ...v,
+      isSelected: !!selectedIds.includes(v.id)
+    }));
+
+    localStorage.setItem('selectedEvents', JSON.stringify(selectedIds));
+
+    this.setState({
+      events: newArr
+    });
+  };
+
+  signUpToEvent = () => {
+    const { selectedId, selectedIds } = this.state;
+    selectedIds.push(selectedId);
+    this.updateEventStatus(selectedIds);
+
+    this.toggleModal();
+  };
+
+  cancelEvent = id => {
+    const { selectedIds } = this.state;
+
+    const arrIndex = selectedIds.indexOf(id);
+    selectedIds.splice(arrIndex, 1);
+
+    this.updateEventStatus(selectedIds);
+  };
+
   render() {
-    const { events, cities } = this.state;
+    const { events, cities, eventName, showModal } = this.state;
     return (
       <Layout>
         <Aside
@@ -74,7 +125,22 @@ export class Home extends Component {
           filterFreeEvents={this.filterFreeEvents}
         />
         <div className={s.childrenHolder}>
-          <Dashboard events={events} cities={cities} />
+          <Dashboard
+            events={events}
+            cities={cities}
+            toggleModal={this.toggleModal}
+            signUpToEvent={this.signUpToEvent}
+            cancelEvent={this.cancelEvent}
+          />
+
+          <Modal show={showModal} handleClose={this.toggleModal}>
+            <span>
+              Would you like to attend
+              <strong>{eventName}</strong>
+              event?
+            </span>
+            <div onClick={this.signUpToEvent}>Yes</div>
+          </Modal>
         </div>
       </Layout>
     );

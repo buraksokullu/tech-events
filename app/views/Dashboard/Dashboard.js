@@ -6,6 +6,12 @@ import { formatDate, getTime, getTimeDifference } from 'Utils/helper';
 import s from './Dashboard.scss';
 
 export class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   getCityName = id => {
     const { cities } = this.props;
 
@@ -16,7 +22,7 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events, toggleModal, cancelEvent } = this.props;
     return (
       <div>
         <div className={s.dashboard}>
@@ -31,7 +37,15 @@ export class Dashboard extends Component {
                       {item.isFree && <span className={s.isFree}> FREE </span>}
                       <strong className={s.name}>{item.name}</strong>
                     </div>
-                    <div> Sign Up </div>
+                    {item.isSelected ? (
+                      <div role="presentation" onClick={() => cancelEvent(item.id)}>
+                        Cancel
+                      </div>
+                    ) : (
+                      <div role="presentation" onClick={() => toggleModal(item.id, item.name)}>
+                        Sign Up
+                      </div>
+                    )}
                   </div>
                   <div className={s.secondRow}>
                     <span className={s.cityName}>{this.getCityName(item.city)}</span>
