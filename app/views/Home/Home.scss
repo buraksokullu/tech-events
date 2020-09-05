@@ -1,3 +1,20 @@
+.bodyHolder {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    margin-top: 16px;
+    padding: 0 12px;
+  }
+
+}
 .childrenHolder {
   flex: 1;
 }

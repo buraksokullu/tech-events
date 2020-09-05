@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'Components/FormFields/Button/Button';
+import ClockIcon from 'Components/svg/ClockIcon';
+import WorldIcon from 'Components/svg/WorldIcon';
 import { formatDate, getTime, getTimeDifference } from 'Utils/helper';
 
-import s from './Dashboard.scss';
+import s from './Events.scss';
 
-export class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export class Events extends Component {
   getCityName = id => {
     const { cities } = this.props;
 
@@ -26,8 +23,7 @@ export class Dashboard extends Component {
     return (
       <div>
         <div className={s.dashboard}>
-          {events &&
-            events.length > 0 &&
+          {events && events.length > 0 ? (
             events.map(item => (
               <div className={s.event} key={item.id}>
                 <div className={s.date}>{formatDate(item.startDate)}</div>
@@ -38,39 +34,46 @@ export class Dashboard extends Component {
                       <strong className={s.name}>{item.name}</strong>
                     </div>
                     {item.isSelected ? (
-                      <div role="presentation" onClick={() => cancelEvent(item.id)}>
-                        Cancel
-                      </div>
+                      <Button onClick={() => cancelEvent(item.id)}> Cancel </Button>
                     ) : (
-                      <div role="presentation" onClick={() => toggleModal(item.id, item.name)}>
-                        Sign Up
-                      </div>
+                      <Button onClick={() => toggleModal(item.id, item.name)}> Sign Up </Button>
                     )}
                   </div>
                   <div className={s.secondRow}>
-                    <span className={s.cityName}>{this.getCityName(item.city)}</span>
+                    <span className={s.cityName}>
+                      <WorldIcon />
+                      <span>{this.getCityName(item.city)}</span>
+                    </span>
                     <span className={s.timeDifferences}>
                       {getTimeDifference(item.startDate, item.endDate)}
                     </span>
-                    <span className={s.time}>{getTime(item.startDate, item.endDate)}</span>
+                    <div className={s.fromToEvent}>
+                      <ClockIcon />
+                      <span className={s.time}>{getTime(item.startDate, item.endDate)}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+          ) : (
+            <div>No events found :(</div>
+          )}
         </div>
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
+Events.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape()),
-  cities: PropTypes.arrayOf(PropTypes.shape())
+  cities: PropTypes.arrayOf(PropTypes.shape()),
+  toggleModal: PropTypes.func.isRequired,
+  cancelEvent: PropTypes.func.isRequired
 };
 
-Dashboard.defaultProps = {
+Events.defaultProps = {
   events: [],
   cities: []
 };
 
-export default Dashboard;
+export default Events;

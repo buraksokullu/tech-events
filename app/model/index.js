@@ -1,3 +1,3 @@
-import { TenantEnums, InlineAlertTypeEnums } from './Enums';
+import { EventTypeEnums } from './Enums';
 
-export { TenantEnums, InlineAlertTypeEnums };
+export default EventTypeEnums;

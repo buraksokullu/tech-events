@@ -21,19 +21,22 @@
 
       .firstRow {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         margin-bottom: 30px;
         .eventName {
           display: flex;
+          align-items: center;
           flex-direction: row;
 
           .isFree {
             display: flex;
             justify-content: center;
             align-items: center;
-            line-height: 1px;;
+            height: 18px;
+            line-height: 1px;
             margin-right: 20px;
-            padding:  8px;
+            padding: 8px;
             font-size: 12px;
             color: white;
             background: $greenlight60;
@@ -42,28 +45,53 @@
 
           .name {
             font-size: 16px;
+            @media screen and (max-width: 767px) {
+              font-size: 14px;
+              max-width: 160px;
+            }
           }
         }
       }
 
-      .secondRow{
+      .secondRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .cityName {
           display: flex;
-          justify-content: space-between;
+          align-items: center;
+          width: 200px;
+          color: $greenlight70;
 
-          .cityName{
-              width: 150px;
-              color: $greenlight70;
+          @media screen and (max-width: 767px) {
+            width: 105px;
           }
 
-          .timeDifferences{
+          span{
+            margin-left: 5px;
+          }
+        }
+
+        .timeDifferences {
+          color: $grey60;
+        }
+
+        .fromToEvent {
+          display: flex;
+          align-items: center;
+          .time {
+            margin-left: 5px;
+            width: 155px;
+            font-weight: 600;
             color: $grey60;
-          }
 
-          .time{
-              width: 155px;
-              font-weight: 600;
-              color: $grey60;
+            @media screen and (max-width: 767px) {
+              width: auto;
+              font-size:13px;
+            }
           }
+        }
       }
     }
   }

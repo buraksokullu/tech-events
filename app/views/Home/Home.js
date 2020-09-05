@@ -5,12 +5,15 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { getEvents, getCities } from 'Store/api/TrivagoApi';
-import Layout from 'Components/Layout/Layout';
+import EventTypeEnums from 'Model/index';
 import { eventsSelector, citiesSelector } from 'App/store/selectors/index';
+import { toastr } from 'react-redux-toastr';
 
+import Button from 'Components/FormFields/Button/Button';
 import Modal from 'Components/Modal/Modal';
-import Dashboard from '../Dashboard/Dashboard';
-import Aside from '../../components/Layout/Aside/Aside';
+import Header from 'Components/Layout/Header/Header';
+import Aside from 'Components/Layout/Aside/Aside';
+import Events from '../Events/Events';
 
 import s from './Home.scss';
 
@@ -22,8 +25,9 @@ export class Home extends Component {
       showModal: false,
       eventName: '',
       selectedIds: [],
-      cities: [],
-      events: []
+      citiesState: [],
+      selectedEvents: [],
+      allEvents: []
     };
   }
 
@@ -50,28 +54,31 @@ export class Home extends Component {
     }));
 
     this.setState({
-      events: newArr,
-      cities,
+      allEvents: newArr,
+      selectedEvents: newArr,
+      citiesState: cities,
       selectedIds: selectedEventIdsStore || []
     });
   };
 
   filterByName = data => {
-    const { events } = this.props;
-    const filteredEvents = events.filter(ev => ev.name.toLowerCase().includes(data.toLowerCase()));
+    const { selectedEvents, allEvents } = this.state;
+    const filteredEvents = data
+      ? selectedEvents.filter(ev => ev.name.toLowerCase().includes(data.toLowerCase()))
+      : allEvents;
 
     this.setState({
-      events: filteredEvents
+      selectedEvents: filteredEvents
     });
   };
 
   filterFreeEvents = data => {
-    const { events } = this.props;
+    const { selectedEvents, allEvents } = this.state;
 
-    const filteredEvents = data ? events.filter(ev => ev.isFree === true) : events;
+    const filteredEvents = data ? selectedEvents.filter(ev => ev.isFree === true) : allEvents;
 
     this.setState({
-      events: filteredEvents
+      selectedEvents: filteredEvents
     });
   };
 
@@ -84,8 +91,8 @@ export class Home extends Component {
   };
 
   updateEventStatus = selectedIds => {
-    const { events } = this.state;
-    const newArr = events.map(v => ({
+    const { allEvents } = this.state;
+    const newArr = allEvents.map(v => ({
       ...v,
       isSelected: !!selectedIds.includes(v.id)
     }));
@@ -93,7 +100,8 @@ export class Home extends Component {
     localStorage.setItem('selectedEvents', JSON.stringify(selectedIds));
 
     this.setState({
-      events: newArr
+      selectedEvents: newArr,
+      allEvents: newArr
     });
   };
 
@@ -101,7 +109,7 @@ export class Home extends Component {
     const { selectedId, selectedIds } = this.state;
     selectedIds.push(selectedId);
     this.updateEventStatus(selectedIds);
-
+    toastr.success('You have been registered to the event!');
     this.toggleModal();
   };
 
@@ -110,39 +118,50 @@ export class Home extends Component {
 
     const arrIndex = selectedIds.indexOf(id);
     selectedIds.splice(arrIndex, 1);
-
     this.updateEventStatus(selectedIds);
+    toastr.success('Event cancelled');
+  };
+
+  selectEventType = eventType => {
+    const { allEvents } = this.state;
+
+    const filteredEvents =
+      eventType === EventTypeEnums.MY_EVENTS
+        ? allEvents.filter(ev => ev.isSelected === true)
+        : allEvents;
+
+    this.setState({
+      selectedEvents: filteredEvents
+    });
   };
 
   render() {
-    const { events, cities, eventName, showModal } = this.state;
+    const { selectedEvents, citiesState, eventName, showModal } = this.state;
     return (
-      <Layout>
-        <Aside
-          events={events}
-          cities={cities}
-          filterByName={this.filterByName}
-          filterFreeEvents={this.filterFreeEvents}
-        />
-        <div className={s.childrenHolder}>
-          <Dashboard
-            events={events}
-            cities={cities}
-            toggleModal={this.toggleModal}
-            signUpToEvent={this.signUpToEvent}
-            cancelEvent={this.cancelEvent}
-          />
+      <>
+        <Header selectEventType={this.selectEventType} />
+        <div className={s.bodyHolder}>
+          <Aside filterByName={this.filterByName} filterFreeEvents={this.filterFreeEvents} />
+          <div className={s.childrenHolder}>
+            <Events
+              events={selectedEvents}
+              cities={citiesState}
+              toggleModal={this.toggleModal}
+              signUpToEvent={this.signUpToEvent}
+              cancelEvent={this.cancelEvent}
+            />
 
-          <Modal show={showModal} handleClose={this.toggleModal}>
-            <span>
-              Would you like to attend
-              <strong>{eventName}</strong>
-              event?
-            </span>
-            <div onClick={this.signUpToEvent}>Yes</div>
-          </Modal>
+            <Modal show={showModal} handleClose={this.toggleModal}>
+              <span>
+                Would you like to attend
+                <strong>{eventName}</strong>
+                event?
+              </span>
+              <Button onClick={this.signUpToEvent}>Yes</Button>
+            </Modal>
+          </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

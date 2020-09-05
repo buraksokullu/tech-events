@@ -19,7 +19,7 @@ const App = () => (
       <Router history={history}>
         <RootRouter />
         <ReduxToastr
-          timeOut={60000}
+          timeOut={3000}
           newestOnTop={false}
           preventDuplicates
           position="top-right"

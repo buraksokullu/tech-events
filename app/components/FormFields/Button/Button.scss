@@ -1,0 +1,22 @@
+
+.root {
+	border: 1px solid $blue-border;
+	background: $white;
+	border-radius: 3px;
+	color: $blue-border;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.2em;
+	padding: 10px;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	transition: background 0.3s, color 0.3s;
+
+	&:hover {
+		background: $blue-border;
+		color: #fff;
+		cursor: pointer;
+	}
+
+}

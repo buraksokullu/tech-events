@@ -21,6 +21,7 @@ export class Aside extends Component {
   render() {
     return (
       <div className={s.sidebarHolder}>
+        <div className={s.title}>Find your event</div>
         <div className={s.searchInput}>
           <Input
             id="eventName"
