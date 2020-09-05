@@ -8,12 +8,11 @@
   margin-right: auto;
   box-sizing: border-box;
 
-  @media screen and (max-width: 767px) {
+  @media only screen and (max-width: 1024px) {
     flex-direction: column;
     margin-top: 16px;
     padding: 0 12px;
   }
-
 }
 .childrenHolder {
   flex: 1;

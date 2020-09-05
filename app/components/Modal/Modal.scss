@@ -18,27 +18,27 @@
   .modalMain {
     position: fixed;
     background: white;
-    font-size:16px;
+    font-size: 16px;
     width: 100%;
     max-width: 600px;
     padding: 30px;
     height: auto;
-    border-radius: 8px;;
+    border-radius: 8px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .cancelBtn{
+    .cancelBtn {
       display: inline-block;
-      margin-left: 20px;;
+      margin-left: 20px;
     }
-    span{
-        display: block;
-        margin-bottom: 20px;
-        color: $grey120;
-        strong{
-            margin: 0 5px;
-        }
+    span {
+      display: block;
+      margin-bottom: 20px;
+      color: $grey120;
+      strong {
+        margin: 0 5px;
+      }
     }
   }
 }

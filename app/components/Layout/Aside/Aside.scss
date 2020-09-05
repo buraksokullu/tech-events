@@ -4,20 +4,19 @@
   width: 224px;
   margin-right: 20px;
 
-  @media screen and (max-width: 767px) {
+  @media only screen and (max-width: 1024px) {
     padding-bottom: 10px;
     border-bottom: 1px solid $grey40;
     margin-bottom: 20px;
     width: 100%;
   }
-  
-  .title{
+
+  .title {
     margin-bottom: 10px;
-     
   }
 
-  .searchInput{
-    margin-bottom: 20px;;
+  .searchInput {
+    margin-bottom: 20px;
   }
 
   .isFree {
@@ -31,5 +30,4 @@
     background: $greenlight60;
     border-radius: 10px;
   }
-
 }
