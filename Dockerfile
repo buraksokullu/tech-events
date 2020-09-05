@@ -1,16 +1,19 @@
-# build environment
-FROM node:alpine as builder
-ARG version
-RUN echo "Version: $version"
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# pull official base image
+FROM node:13.12.0-alpine
 
-ENV PORT 80
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
+# set working directory
+WORKDIR /app
 
-RUN yarn --network-timeout 1000000 install
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY . /usr/src/app
-RUN version=$version yarn run build
+# install app dependencies
+COPY package.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "start"]

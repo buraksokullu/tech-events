@@ -11,7 +11,6 @@
       "Utils/*": ["app/utilities/*"],
       "Views/*": ["app/views/*"],
       "Routes/*": ["app/routes/*"],
-      "Hooks/*": ["app/hooks/*"],
       "Store/*": ["app/store/*"],
       "Services/*": ["app/services/*"]
     }

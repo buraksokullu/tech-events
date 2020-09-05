@@ -8,13 +8,13 @@ describe('RootRouter', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('renderDashboardComponent should render correctly', () => {
+  it('renderHomeComponent should render correctly', () => {
     const component = shallow(<RootRouter />);
     const instance = component.instance();
     const dumProps = {
       dumValue: 'dumValue'
     };
-    expect(instance.renderDashboardComponent(dumProps)).toMatchSnapshot();
+    expect(instance.renderHomeComponent(dumProps)).toMatchSnapshot();
   });
 
   it('renderCampaignContentsComponent should render correctly', () => {
