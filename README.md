@@ -22,4 +22,4 @@
 **Docker**
 
     docker build -t trivago:dev .
-    dockedocker-compose up -d --build
+    docker-compose up -d --build
