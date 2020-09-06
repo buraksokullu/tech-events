@@ -1,3 +1,3 @@
-import { getCampaignContents, getCampaignContentById, saveCampaignContent } from './CampaignApi';
+import { getCities, getEvents } from './trivagoApi';
 
-export { getCampaignContents, getCampaignContentById, saveCampaignContent };
+export { getCities, getEvents };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Input from 'Components/FormFields/Input/Input';
 import Checkbox from 'Components/FormFields/Checkbox/Checkbox';
@@ -38,17 +39,22 @@ export class Aside extends Component {
             name="chckOnlyFree"
             checked={false}
             onChange={this.filterFreeEvents}
-            label={(
+            label={
               <div>
                 Only
                 <span className={s.isFree}>Free</span>
               </div>
-            )}
+            }
           />
         </div>
       </div>
     );
   }
 }
+
+Aside.propTypes = {
+  filterByName: PropTypes.func.isRequired,
+  filterFreeEvents: PropTypes.func.isRequired
+};
 
 export default Aside;

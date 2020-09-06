@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { getEvents, getCities } from 'Store/api/TrivagoApi';
+import { getEvents, getCities } from 'Store/api/index';
 import EventTypeEnums from 'Model/index';
-import { eventsSelector, citiesSelector } from 'App/store/selectors/index';
+import { eventsSelector, citiesSelector } from 'Store/selectors/index';
 import { toastr } from 'react-redux-toastr';
 
 import Button from 'Components/FormFields/Button/Button';
@@ -24,7 +24,7 @@ export class Home extends Component {
     this.state = {
       showModal: false,
       eventName: '',
-      selectedIds: [],
+      registeredEvents: [],
       citiesState: [],
       selectedEvents: [],
       allEvents: []
@@ -32,20 +32,24 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    const { getEvents, getCities } = this.props;
-    getEvents();
+    const { getCities } = this.props;
     getCities();
+    this.getEvents();
   }
 
-  componentDidUpdate(prevProps) {
-    const { events } = this.props;
-    if (events !== prevProps.events) {
-      this.setData(events);
-    }
-  }
+  getEvents = async () => {
+    return new Promise(resolve => {
+      const { getEvents } = this.props;
 
-  setData = events => {
-    const { cities } = this.props;
+      getEvents().then(() => {
+        this.setData();
+        resolve();
+      });
+    });
+  };
+
+  setData = () => {
+    const { cities, events } = this.props;
     const selectedEventIdsStore = JSON.parse(localStorage.getItem('selectedEvents'));
 
     const newArr = events.map(v => ({
@@ -57,7 +61,7 @@ export class Home extends Component {
       allEvents: newArr,
       selectedEvents: newArr,
       citiesState: cities,
-      selectedIds: selectedEventIdsStore || []
+      registeredEvents: selectedEventIdsStore || []
     });
   };
 
@@ -90,14 +94,14 @@ export class Home extends Component {
     }));
   };
 
-  updateEventStatus = selectedIds => {
+  updateEventStatus = registeredEvents => {
     const { allEvents } = this.state;
     const newArr = allEvents.map(v => ({
       ...v,
-      isSelected: !!selectedIds.includes(v.id)
+      isSelected: !!registeredEvents.includes(v.id)
     }));
 
-    localStorage.setItem('selectedEvents', JSON.stringify(selectedIds));
+    localStorage.setItem('selectedEvents', JSON.stringify(registeredEvents));
 
     this.setState({
       selectedEvents: newArr,
@@ -106,19 +110,19 @@ export class Home extends Component {
   };
 
   signUpToEvent = () => {
-    const { selectedId, selectedIds } = this.state;
-    selectedIds.push(selectedId);
-    this.updateEventStatus(selectedIds);
+    const { selectedId, registeredEvents } = this.state;
+    registeredEvents.push(selectedId);
+    this.updateEventStatus(registeredEvents);
     toastr.success('You have been registered to the event!');
     this.toggleModal();
   };
 
   cancelEvent = id => {
-    const { selectedIds } = this.state;
+    const { registeredEvents } = this.state;
 
-    const arrIndex = selectedIds.indexOf(id);
-    selectedIds.splice(arrIndex, 1);
-    this.updateEventStatus(selectedIds);
+    const arrIndex = registeredEvents.indexOf(id);
+    registeredEvents.splice(arrIndex, 1);
+    this.updateEventStatus(registeredEvents);
     toastr.success('Event cancelled');
   };
 

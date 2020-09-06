@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Aside Should render correctly 1`] = `
+<div>
+  <div>
+    Find your event
+  </div>
+  <div>
+    <Input
+      id="eventName"
+      input={null}
+      maxLength="50"
+      name="eventName"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+    />
+  </div>
+  <div>
+    <CheckBox
+      checked={false}
+      id="chckOnlyFree"
+      input={null}
+      label={
+        <div>
+          Only
+          <span>
+            Free
+          </span>
+        </div>
+      }
+      name="chckOnlyFree"
+      onChange={[Function]}
+      value={null}
+    />
+  </div>
+</div>
+`;

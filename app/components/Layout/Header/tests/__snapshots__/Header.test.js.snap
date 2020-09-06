@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Should render correctly 1`] = `
+<div>
+  <div>
+    <a
+      href="/"
+    >
+      <TrivagoIcon />
+    </a>
+    <div>
+      <div
+        onClick={[Function]}
+        role="presentation"
+      >
+        All Events
+      </div>
+      <div
+        onClick={[Function]}
+        role="presentation"
+      >
+        My Events
+      </div>
+    </div>
+  </div>
+</div>
+`;

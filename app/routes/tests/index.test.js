@@ -16,22 +16,4 @@ describe('RootRouter', () => {
     };
     expect(instance.renderHomeComponent(dumProps)).toMatchSnapshot();
   });
-
-  it('renderCampaignContentsComponent should render correctly', () => {
-    const component = shallow(<RootRouter />);
-    const instance = component.instance();
-    const dumProps = {
-      dumValue: 'dumValue'
-    };
-    expect(instance.renderCampaignContentsComponent(dumProps)).toMatchSnapshot();
-  });
-
-  it('redirectDashboardComponent should render correctly', () => {
-    const component = shallow(<RootRouter />);
-    const instance = component.instance();
-    const dumProps = {
-      dumValue: 'dumValue'
-    };
-    expect(instance.redirectDashboardComponent(dumProps)).toMatchSnapshot();
-  });
 });

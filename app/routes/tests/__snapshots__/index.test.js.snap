@@ -4,42 +4,23 @@ exports[`RootRouter Should render correctly 1`] = `
 <Suspense
   fallback={<div />}
 >
-  <Switch>
-    <Route
-      exact={true}
-      path="/"
-      render={[Function]}
-    />
-    <Route
-      exact={true}
-      path="/campaign-contents"
-      render={[Function]}
-    />
-    <Route
-      render={[Function]}
-    />
-  </Switch>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+      <Route
+        render={[Function]}
+      />
+    </Switch>
+  </BrowserRouter>
 </Suspense>
 `;
 
-exports[`RootRouter redirectDashboardComponent should render correctly 1`] = `
-<Redirect
-  to="/"
+exports[`RootRouter renderHomeComponent should render correctly 1`] = `
+<UNDEFINED
+  dumValue="dumValue"
 />
-`;
-
-exports[`RootRouter renderCampaignContentsComponent should render correctly 1`] = `
-<UNDEFINED>
-  <UNDEFINED
-    dumValue="dumValue"
-  />
-</UNDEFINED>
-`;
-
-exports[`RootRouter renderDashboardComponent should render correctly 1`] = `
-<UNDEFINED>
-  <Dashboard
-    dumValue="dumValue"
-  />
-</UNDEFINED>
 `;

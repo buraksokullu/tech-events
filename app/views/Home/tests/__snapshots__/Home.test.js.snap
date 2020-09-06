@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Should render correctly 1`] = `
+<Fragment>
+  <Header
+    selectEventType={[Function]}
+  />
+  <div>
+    <Aside
+      filterByName={[Function]}
+      filterFreeEvents={[Function]}
+    />
+    <div>
+      <Events
+        cancelEvent={[Function]}
+        cities={Array []}
+        events={Array []}
+        signUpToEvent={[Function]}
+        toggleModal={[Function]}
+      />
+      <Modal
+        handleClose={[Function]}
+        show={false}
+      >
+        <span>
+          Would you like to attend
+          <strong />
+          event?
+        </span>
+        <Button
+          onClick={[Function]}
+        >
+          Yes
+        </Button>
+      </Modal>
+    </div>
+  </div>
+</Fragment>
+`;

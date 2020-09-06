@@ -1,10 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import s from './Input.scss';
 
-// eslint-disable-next-line react/prop-types
-const Input = ({ input, type, inputRef, ...args }) => (
-  <input {...input} {...args} type={type} ref={inputRef} className={s.input}/>
+const Input = ({ input, type, ...args }) => (
+  <input {...input} {...args} type={type} className={s.input} />
 );
+
+Input.propTypes = {
+  input: PropTypes.node,
+  type: PropTypes.string
+};
+
+Input.defaultProps = {
+  input: null,
+  type: 'text'
+};
 
 export default Input;

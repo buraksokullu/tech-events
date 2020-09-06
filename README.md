@@ -14,6 +14,11 @@
 
     npm run build
 
+**Test**
+
+    npm test
+    npm test -- --coverage
+
 **Docker**
 
     docker build -t trivago:dev .

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Should render correctly 1`] = `
+<input
+  0="i"
+  1="n"
+  2="p"
+  3="u"
+  4="t"
+  type="type"
+/>
+`;

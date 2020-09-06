@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox Should render correctly 1`] = `
+<div
+  className="undefined"
+  role="presentation"
+>
+  <input
+    0="c"
+    1="h"
+    2="i"
+    3="l"
+    4="d"
+    5="r"
+    6="e"
+    7="n"
+    checked="value"
+    id="id"
+    type="checkbox"
+  >
+    children
+  </input>
+  <label
+    htmlFor="id"
+  >
+    label
+  </label>
+</div>
+`;
